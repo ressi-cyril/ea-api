@@ -1,0 +1,55 @@
+version: "3.8"
+services:
+
+  php-apache:
+    container_name: www
+    ports:
+      - "80:80"
+    build: docker/php
+    volumes:
+      - ./:/var/www/html
+      - ./docker/php/vhosts.conf:/etc/apache2/sites-enabled/000-default.conf
+    networks:
+      - dev
+
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?serverVersion=15&charset=utf8
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+
+    networks:
+      - dev
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - "8081:8080"
+    networks:
+      - dev
+
+  maildev:
+    image: maildev/maildev
+    container_name: maildev_docker_symfony
+    command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
+    ports:
+      - "8082:80"
+    restart: always
+    networks:
+      - dev
+
+networks:
+  dev:
+
+volumes:
+  postgres-data:

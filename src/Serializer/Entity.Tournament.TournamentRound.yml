@@ -1,0 +1,34 @@
+App\Entity\Tournament\TournamentRound:
+  access_type: public_method
+  exclusion_policy: all
+  properties:
+    id:
+      groups: [ "myTournament" ]
+      expose: true
+      type: string
+    name:
+      groups: ["myTournament"]
+      expose: true
+      type: string
+    bestOf:
+      groups: ["myTournament"]
+      expose: true
+      type: int
+    bracket:
+      groups: [ "myTournament" ]
+      expose: true
+      type: App\Entity\Tournament\TournamentBracket
+      accessor:
+        getter: getBracket
+        setter: setBracket
+    matches:
+      groups: [ "myTournament" ]
+      expose: true
+      type: ArrayCollection<App\Entity\Tournament\TournamentMatch>
+      accessor:
+        getter: getMatches
+        setter: addMatches
+    infos:
+      groups: [ "myTournament" ]
+      expose: true
+      type: array

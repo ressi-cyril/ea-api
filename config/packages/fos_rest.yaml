@@ -1,0 +1,20 @@
+fos_rest:
+  exception:
+    serializer_error_renderer: true
+  view:
+    formats: { json: true, xml: false, rss: false, text: false }
+    view_response_listener: force
+  serializer:
+    serialize_null: true
+  body_converter:
+    enabled: true
+    validate: true
+    validation_errors_argument: validationErrors
+  body_listener:
+    enabled: true
+  param_fetcher_listener:
+    enabled: true
+  format_listener:
+    enabled: true
+    rules:
+      - { path: ^/, prefer_extension: true, fallback_format: json, priorities: [ 'json' ] }

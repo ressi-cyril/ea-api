@@ -1,0 +1,51 @@
+App\Entity\Tournament\TournamentMatch:
+  access_type: public_method
+  exclusion_policy: all
+  properties:
+    id:
+      groups: [ "myTournament" , "myMatch" ]
+      expose: true
+      type: string
+    name:
+      groups: [ "myTournament" , "myMatch" ]
+      expose: true
+      type: string
+    teamOne:
+      groups: [ "myTournament" , "myMatch" ]
+      expose: true
+      type: App\Entity\Team\Team
+      accessor:
+        getter: getTeamOne
+        setter: setTeamOne
+    teamTwo:
+      groups: [ "myTournament" , "myMatch" ]
+      expose: true
+      type: App\Entity\Team\Team
+      accessor:
+        getter: getTeamTwo
+        setter: setTeamTwo
+    result:
+      groups: ["myTournament" , "myMatch" ]
+      expose: true
+      type: string
+    isFinish:
+      groups: ["myMatch"]
+      expose: true
+      type: bool
+      accessor:
+        getter: isFinish
+        setter: setIsFinish
+    isWaitingForAdmin:
+      groups: [ "myMatch" ]
+      expose: true
+      type: bool
+      accessor:
+        getter: isWaitingForAdmin
+        setter: setWaitingForAdmin
+    round:
+      groups: [ "myTournament", "myMatch" ]
+      expose: true
+      type: App\Entity\Tournament\TournamentRound
+      accessor:
+        getter: getRound
+        setter: setRound

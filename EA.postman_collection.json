@@ -1,0 +1,1674 @@
+{
+	"info": {
+		"_postman_id": "c23f4d41-c55a-4d63-a179-95a99d56b766",
+		"name": "EA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19089480"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\" : \"player\",\r\n    \"email\": \"player3@gmail.com\",\r\n    \"password\" : \"password\",\r\n    \"gamer_tag\" : \"player3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-europarena-59cfe670a2bb.herokuapp.com/api/open/register",
+							"protocol": "https",
+							"host": [
+								"api-europarena-59cfe670a2bb",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"open",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"staff1@gmail.com\",\r\n    \"password\" : \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-europarena-59cfe670a2bb.herokuapp.com/api/open/login_check",
+							"protocol": "https",
+							"host": [
+								"api-europarena-59cfe670a2bb",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"open",
+								"login_check"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Team",
+			"item": [
+				{
+					"name": "Post Team",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"NLF\",\r\n    \"type\": \"4s\",\r\n    \"player_captain\" : \"018b3956-6bfd-7a7e-9c93-1ac0186c7d9f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-europarena-59cfe670a2bb.herokuapp.com/api/teams",
+							"protocol": "https",
+							"host": [
+								"api-europarena-59cfe670a2bb",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Teams",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/teams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"teams"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "player@mail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Team by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:80/api/teams/0189636f-20a7-7a94-987f-d738467251e3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"teams",
+								"0189636f-20a7-7a94-987f-d738467251e3"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "player@mail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Team",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"NLF3\",\r\n    \"player_captain\" : 121\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/teams/44",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"teams",
+								"44"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Del Team by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/teams/46",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"teams",
+								"46"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "player@mail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Team Player invite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/teams/01896387-44c0-7ad8-8353-78564e45caf2/players/01896388-ddeb-7b78-9c7a-d14006510f17/invite",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"teams",
+								"01896387-44c0-7ad8-8353-78564e45caf2",
+								"players",
+								"01896388-ddeb-7b78-9c7a-d14006510f17",
+								"invite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Del Team Player decline",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/teams/43/players/122/decline",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"teams",
+								"43",
+								"players",
+								"122",
+								"decline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Team Player join",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/teams/43/players/121/join",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"teams",
+								"43",
+								"players",
+								"121",
+								"join"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Del Team Player leaving",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/teams/38/players/102/leave",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"teams",
+								"38",
+								"players",
+								"102",
+								"leave"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tournament",
+			"item": [
+				{
+					"name": "Get Tournaments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-europarena-59cfe670a2bb.herokuapp.com/api/tournaments",
+							"protocol": "https",
+							"host": [
+								"api-europarena-59cfe670a2bb",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"tournaments"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "player@mail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tournaments by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:80/api/tournaments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"tournaments",
+								"1"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "player@mail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Tournament Team join",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-europarena-59cfe670a2bb.herokuapp.com/api/tournaments/018aa8c2-9fdd-7484-be01-c6becad9159a/teams/018b3957-63c5-7f45-a01c-562f9f89808c/join",
+							"protocol": "https",
+							"host": [
+								"api-europarena-59cfe670a2bb",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"tournaments",
+								"018aa8c2-9fdd-7484-be01-c6becad9159a",
+								"teams",
+								"018b3957-63c5-7f45-a01c-562f9f89808c",
+								"join"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Del Tournament Team leave",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-europarena-59cfe670a2bb.herokuapp.com/api/tournaments/018aa8c2-9fdd-7484-be01-c6becad9159a/teams/018b3957-63c5-7f45-a01c-562f9f89808c/leave",
+							"protocol": "https",
+							"host": [
+								"api-europarena-59cfe670a2bb",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"tournaments",
+								"018aa8c2-9fdd-7484-be01-c6becad9159a",
+								"teams",
+								"018b3957-63c5-7f45-a01c-562f9f89808c",
+								"leave"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tournament Report Score",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"score\" : \"3-0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/tournaments/018a031d-77c4-7870-98b5-fd3931d1a2ee/matches/018a175b-3bdc-7f22-b7fb-387fa3ffb590/report-score",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"tournaments",
+								"018a031d-77c4-7870-98b5-fd3931d1a2ee",
+								"matches",
+								"018a175b-3bdc-7f22-b7fb-387fa3ffb590",
+								"report-score"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "player@mail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tournament Report Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"score\" : \"3-0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/tournaments/018a031d-77c4-7870-98b5-fd3931d1a2ee/matches/018a175b-3bdc-7f22-b7fb-387fa3ffb590/report-admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"tournaments",
+								"018a031d-77c4-7870-98b5-fd3931d1a2ee",
+								"matches",
+								"018a175b-3bdc-7f22-b7fb-387fa3ffb590",
+								"report-admin"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "player@mail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Staff",
+			"item": [
+				{
+					"name": "Staff Tournaments",
+					"item": [
+						{
+							"name": "Get Tournaments",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-europarena-59cfe670a2bb.herokuapp.com/api/staff/tournaments",
+									"protocol": "https",
+									"host": [
+										"api-europarena-59cfe670a2bb",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"staff",
+										"tournaments"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "player@mail.com",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Tournaments by ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:80/api/staff/tournaments/018a8e7b-d29f-78bb-827a-973fdd3e3467",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"staff",
+										"tournaments",
+										"018a8e7b-d29f-78bb-827a-973fdd3e3467"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "player@mail.com",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post Tournament",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Opening Tournament 3\",\r\n    \"points\": 120,\r\n    \"type\" : \"4s\",\r\n    \"start_at\" : \"2023-10-16T22:00:00+00:00\",\r\n    \"max_teams\" : 8,\r\n    \"has_loser_bracket\" : 1,\r\n    \"cash_price\" :  50.2,\r\n    \"points_by_tier\" : [ 90, 10, 10, 5, 3 ,2  ]       \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-europarena-59cfe670a2bb.herokuapp.com/api/staff/tournaments",
+									"protocol": "https",
+									"host": [
+										"api-europarena-59cfe670a2bb",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"staff",
+										"tournaments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put Tournament",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Tournament update\",\r\n    \"points\": 120,\r\n    \"type\" : \"4s\",\r\n    \"start_at\" : \"2023-10-17T00:01:00+00:00\",\r\n    \"max_teams\" : 8,\r\n    \"has_loser_bracket\" : 1,\r\n    \"cash_price\" :  50.2,\r\n    \"points_by_tier\" : [ 90, 10, 15, 5  ]       \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-europarena-59cfe670a2bb.herokuapp.com/api/staff/tournaments/018aa8c2-9fdd-7484-be01-c6becad9159a",
+									"protocol": "https",
+									"host": [
+										"api-europarena-59cfe670a2bb",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"staff",
+										"tournaments",
+										"018aa8c2-9fdd-7484-be01-c6becad9159a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Tournament",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:80/api/staff/tournaments/018a4b5d-b839-7477-ae04-4b7a812e061a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"staff",
+										"tournaments",
+										"018a4b5d-b839-7477-ae04-4b7a812e061a"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "player@mail.com",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Staff Tournaments Progress",
+					"item": [
+						{
+							"name": "Post Tournament Start",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"best_of\" : 5,\r\n    \"infos\" : [\r\n        {\r\n            \"map 1\" : \"Argile\",\r\n            \"mode\" : \"Slayer\"            \r\n        },\r\n        {\r\n            \"map 2\" : \"Recharge\",\r\n            \"mode\" : \"Slayer\"            \r\n        }\r\n    ]       \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api-europarena-59cfe670a2bb.herokuapp.com/api/staff/tournaments/018b3951-5ef3-77f1-9d72-6dff6c7ec17b/start",
+									"protocol": "https",
+									"host": [
+										"api-europarena-59cfe670a2bb",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"staff",
+										"tournaments",
+										"018b3951-5ef3-77f1-9d72-6dff6c7ec17b",
+										"start"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "player@mail.com",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post Tournament Continue",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"best_of\" : 5,\r\n    \"infos\" : [\r\n        {\r\n            \"map 1\" : \"Argile\",\r\n            \"mode\" : \"Slayer\"            \r\n        },\r\n        {\r\n            \"map 2\" : \"Recharge\",\r\n            \"mode\" : \"Slayer\"            \r\n        }\r\n    ]       \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/api/staff/tournaments/018a5f50-c2be-7b33-bbdc-125fe6502778/continue",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"staff",
+										"tournaments",
+										"018a5f50-c2be-7b33-bbdc-125fe6502778",
+										"continue"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Tournament Matches",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:80/api/staff/tournaments/018a031d-77c4-7870-98b5-fd3931d1a2ee/matches",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"staff",
+										"tournaments",
+										"018a031d-77c4-7870-98b5-fd3931d1a2ee",
+										"matches"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch Tournament Round End",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:80/api/staff/tournaments/018a5f18-f661-7722-b750-a69a9c434b7c/rounds/018a5f28-dcb6-76fc-badc-d8bd6910baee/end",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"staff",
+										"tournaments",
+										"018a5f18-f661-7722-b750-a69a9c434b7c",
+										"rounds",
+										"018a5f28-dcb6-76fc-badc-d8bd6910baee",
+										"end"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch Tournament Match result",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"score\" : \"0-5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/api/staff/tournaments/018a031d-77c4-7870-98b5-fd3931d1a2ee/matches/018a175b-3bdc-7f22-b7fb-387fa3ffb590",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"staff",
+										"tournaments",
+										"018a031d-77c4-7870-98b5-fd3931d1a2ee",
+										"matches",
+										"018a175b-3bdc-7f22-b7fb-387fa3ffb590"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "player@mail.com",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Staff Users",
+					"item": [
+						{
+							"name": "Get Users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-europarena-59cfe670a2bb.herokuapp.com/api/staff/users",
+									"protocol": "https",
+									"host": [
+										"api-europarena-59cfe670a2bb",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"staff",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User by ID",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/api/staff/users/123",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"staff",
+										"users",
+										"123"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "player@mail.com",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\" : \"staff\",\r\n    \"email\": \"cyrilew@gmail.com\",\r\n    \"name\" : \"cyril\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/api/staff/users/124",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"staff",
+										"users",
+										"124"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Users by ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:80/api/staff/users/123",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"staff",
+										"users",
+										"123"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "player@mail.com",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Staff Articles",
+					"item": [
+						{
+							"name": "Post Articles",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\" : \"premier article\",\r\n    \"content\" : \"content blablabla\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost/api/staff/articles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"path": [
+										"api",
+										"staff",
+										"articles"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "player@mail.com",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Articles",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api-europarena-59cfe670a2bb.herokuapp.com/api/staff/articles",
+									"protocol": "https",
+									"host": [
+										"api-europarena-59cfe670a2bb",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"api",
+										"staff",
+										"articles"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "player@mail.com",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Articles by ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:80/api/staff/articles/018a409c-f255-729e-ad9d-0886a15c1780",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"staff",
+										"articles",
+										"018a409c-f255-729e-ad9d-0886a15c1780"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "player@mail.com",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put Articles",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\" : \"neeeeeeeew\",\r\n    \"content\" : \"new szszsz blablabla\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:80/api/staff/articles/018a6f61-4884-768a-ac8a-64dcefd3484f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"staff",
+										"articles",
+										"018a6f61-4884-768a-ac8a-64dcefd3484f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Articles by ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:80/api/staff/articles/018a6f61-4884-768a-ac8a-64dcefd3484f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "80",
+									"path": [
+										"api",
+										"staff",
+										"articles",
+										"018a6f61-4884-768a-ac8a-64dcefd3484f"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "player@mail.com",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Put User Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\" : \"staff\",\r\n    \"gamer_tag\" : \"baldonoo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/users/122",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"users",
+								"122"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Users by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:80/api/users/122",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"users",
+								"122"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "player@mail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Player",
+			"item": [
+				{
+					"name": "Get Players",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-europarena-59cfe670a2bb.herokuapp.com/api/players",
+							"protocol": "https",
+							"host": [
+								"api-europarena-59cfe670a2bb",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"players"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Player by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:80/api/players/120",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "80",
+							"path": [
+								"api",
+								"players",
+								"120"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "player@mail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

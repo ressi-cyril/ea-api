@@ -1,0 +1,34 @@
+App\Entity\Team\Team:
+  access_type: public_method
+  exclusion_policy: all
+  properties:
+    id:
+      groups: [ "myTeam", "myInvite", "myTournament" ]
+      expose: true
+      type: string
+    name:
+      groups: [ "myTeam", "myInvite", "myTournament", "myMatch" ]
+      expose: true
+      type: string
+    points:
+      groups: [ "myTeam" , "myTournament" ]
+      expose: true
+      type: int
+    type:
+      groups: [ "myTeam" ]
+      expose: true
+      type: string
+    players:
+      groups: [ "myTeam", "myMatch" ]
+      expose: true
+      type: ArrayCollection<App\Entity\User\PlayerUser>
+      accessor:
+        getter: getPlayers
+        setter: addPlayer
+    captain:
+      groups: [ "myTeam" , "myMatch" ]
+      type: App\Entity\User\PlayerUser
+    createdAt:
+      groups: [ "myTeam" ]
+      expose: true
+      type: DateTime

@@ -1,0 +1,16 @@
+App\Entity\Tournament\TournamentRanking:
+  access_type: public_method
+  exclusion_policy: all
+  properties:
+    id:
+      groups: [ "myTournament" ]
+      expose: true
+      type: string
+    pointsByTier:
+      groups: [ "myTournament" ]
+      expose: true
+      type: array
+    result:
+      groups: [ "myTournament" ]
+      expose: true
+      type: array

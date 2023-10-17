@@ -1,0 +1,18 @@
+App\Entity\Team\TeamInvite:
+  access_type: public_method
+  exclusion_policy: all
+  properties:
+    id:
+      groups: [ "myInvite" ]
+      expose: true
+      type: string
+    team:
+      groups: ["myInvite"]
+      type: App\Entity\Team\Team
+    player:
+      groups: [ "myInvite" ]
+      type: App\Entity\User\PlayerUser
+    createdAt:
+      groups: [ "myInvite" ]
+      expose: true
+      type: DateTime

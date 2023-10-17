@@ -1,0 +1,7 @@
+App\Entity\User\StaffUser:
+  access_type: public_method
+  properties:
+    name:
+      groups: ["read"]
+      expose: true
+      type: string

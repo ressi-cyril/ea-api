@@ -1,0 +1,26 @@
+App\Entity\User\PlayerUser:
+  access_type: public_method
+  properties:
+    gamerTag:
+      groups: ["read", "myTeam", "myInvite", "myMatch"]
+      expose: true
+      type: string
+    points:
+      groups: ["read", "myTeam"]
+      expose: true
+      type: int
+    isCaptain:
+      groups: ["read"]
+      expose: true
+      type: bool
+      accessor:
+        getter: isCaptain
+        setter: setIsCaptain
+    teams:
+      groups: [ "read" ]
+      expose: true
+      type: ArrayCollection<App\Entity\Team\Team>
+      accessor:
+        getter: getTeams
+        setter: addTeam
+

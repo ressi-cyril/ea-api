@@ -1,0 +1,78 @@
+App\Entity\Tournament\Tournament:
+  access_type: public_method
+  exclusion_policy: all
+  properties:
+    id:
+      groups: [ "myTournament" ]
+      expose: true
+      type: string
+    name:
+      groups: ["myTournament"]
+      expose: true
+      type: string
+    points:
+      groups: ["myTournament"]
+      expose: true
+      type: int
+    maxTeams:
+      groups: [ "myTournament" ]
+      expose: true
+      type: int
+    hasLoserBracket:
+      groups: [ "myTournament" ]
+      expose: true
+      type: bool
+      accessor:
+        getter: hasLoserBracket
+        setter: setHasLoserBracket
+    type:
+      groups: ["myTournament"]
+      expose: true
+      type: string
+    cashPrice:
+      groups: [ "myTournament" ]
+      expose: true
+      type: string
+    teams:
+      groups: [ "myTournament" ]
+      expose: true
+      type: ArrayCollection<App\Entity\Team\Team>
+      accessor:
+        getter: getTeams
+        setter: addTeam
+    createdAt:
+      groups: [ "myTournament" ]
+      expose: true
+      type: DateTime
+    startAt:
+      groups: [ "myTournament" ]
+      expose: true
+      type: DateTime
+    isStarted:
+      groups: [ "myTournament" ]
+      expose: true
+      type: bool
+      accessor:
+        getter: isStarted
+        setter: setIsStarted
+    isFinished:
+      groups: [ "myTournament" ]
+      expose: true
+      type: bool
+      accessor:
+        getter: isFinished
+        setter: setIsFinished
+    tournamentBrackets:
+      groups: [ "myTournament" ]
+      expose: true
+      type: ArrayCollection<App\Entity\Tournament\TournamentBracket>
+      accessor:
+        getter: getTournamentBrackets
+        setter: addTournamentBracket
+    ranking:
+      groups: [ "myTournament" ]
+      expose: true
+      type: App\Entity\Tournament\TournamentRanking
+      accessor:
+        getter: getRanking
+        setter: setRanking

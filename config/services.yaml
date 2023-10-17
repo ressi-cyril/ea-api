@@ -1,0 +1,23 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    voter:
+        class: App\Security\Voter\AppVoter
+        autowire: true
+        tags:
+            - { name: security.voter }
+
+    api.event.authentication_success_listener:
+        class: App\EventListener\AuthenticationSuccessListener
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
+

@@ -1,0 +1,30 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: Europ'Arena
+            description: Europ'Arena API for managing esports tournaments on Halo Infinite.
+            version: 1.0.0
+        paths:
+            /api/open/login_check:
+                post:
+                    tags: [ "auth" ]
+                    summary: "Login to the API"
+                    responses:
+                        '200':
+                            description: A Europ'Arena User
+                    requestBody:
+                        description: The user credentials
+                        required: true
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        email:
+                                            type: string
+                                        password:
+                                            type: string
+    areas:
+        path_patterns:
+            - ^/api(?!/open/doc$) # Accepts routes under /api except /api/open/doc
+    use_validation_groups: true

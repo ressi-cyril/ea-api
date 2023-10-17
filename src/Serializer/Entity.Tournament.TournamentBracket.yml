@@ -1,0 +1,26 @@
+App\Entity\Tournament\TournamentBracket:
+  access_type: public_method
+  exclusion_policy: all
+  properties:
+    id:
+      groups: [ "myTournament" ]
+      expose: true
+      type: string
+    name:
+      groups: ["myTournament"]
+      expose: true
+      type: string
+    tournament:
+      groups: [ "myTournament" ]
+      expose: true
+      type: App\Entity\Tournament\Tournament
+      accessor:
+        getter: getTournament
+        setter: setTournament
+    tournamentRounds:
+      groups: [ "myTournament" ]
+      expose: true
+      type: ArrayCollection<App\Entity\Tournament\TournamentRound>
+      accessor:
+        getter: getTournamentRounds
+        setter: addTournamentRound

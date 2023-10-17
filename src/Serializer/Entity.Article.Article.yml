@@ -1,0 +1,20 @@
+App\Entity\Article\Article:
+  access_type: public_method
+  exclusion_policy: all
+  properties:
+    id:
+      groups: [ "myArticle" ]
+      expose: true
+      type: string
+    title:
+      groups: [ "myArticle" ]
+      expose: true
+      type: string
+    content:
+      groups: [ "myArticle" ]
+      expose: true
+      type: string
+    createdAt:
+      groups: [ "myArticle" ]
+      expose: true
+      type: DateTime

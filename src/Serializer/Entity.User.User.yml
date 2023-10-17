@@ -1,0 +1,33 @@
+App\Entity\User\User:
+  properties:
+    id:
+      groups: ["read", "myTeam", "myInvite"]
+      expose: true
+      type: string
+    email:
+      groups: ["read", "write"]
+      expose: true
+      type: string
+    roles:
+      groups: ["read"]
+      expose: true
+      type: array
+    password:
+      groups: ["write"]
+      expose: true
+      type: string
+    isEnabled:
+      groups: ["read"]
+      expose: true
+      type: bool
+      accessor:
+        getter: isEnabled
+        setter: setIsEnabled
+    createdAt:
+      groups: ["read"]
+      expose: true
+      type: DateTime
+    lastLogin:
+      groups: [ "read" ]
+      expose: true
+      type: DateTime

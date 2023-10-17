@@ -1,0 +1,8 @@
+App\Model\Match\Dto\MatchDto:
+  access_type: public_method
+  exclusion_policy: all
+  properties:
+    score:
+      groups: [ "report" ]
+      expose: true
+      string: string

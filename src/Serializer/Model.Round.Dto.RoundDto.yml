@@ -1,0 +1,12 @@
+App\Model\Round\Dto\RoundDto:
+  access_type: public_method
+  exclusion_policy: all
+  properties:
+    infos:
+      groups: [ "start", "next" ]
+      expose: true
+      type: array
+    bestOf:
+      groups: [ "start", "next" ]
+      expose: true
+      type: int

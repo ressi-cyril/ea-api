@@ -1,0 +1,46 @@
+security:
+  enable_authenticator_manager: true
+  password_hashers:
+    App\Entity\User: 'auto'
+    Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+      algorithm: 'auto'
+      cost: 15
+  providers:
+    app_user_provider:
+      entity:
+        class: App\Entity\User\User
+        property: email
+
+  firewalls:
+    login:
+      pattern: ^/api/open
+      stateless: true
+      json_login:
+        check_path: /api/open/login_check
+        success_handler: lexik_jwt_authentication.handler.authentication_success
+        failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+    api:
+      pattern: ^/api
+      stateless: true
+      jwt: ~
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    main:
+      lazy: true
+      provider: app_user_provider
+
+  access_control:
+    - { path: ^/api/open,         roles: PUBLIC_ACCESS }
+    - { path: ^/api/players,         roles: PUBLIC_ACCESS }
+    - { path: ^/api/tournaments,         roles: PUBLIC_ACCESS }
+    - { path: ^/api/teams,         roles: PUBLIC_ACCESS }
+    - { path: ^/api/staff,        roles: ROLE_STAFF }
+
+
+## playersController and tournamentsController routes should be /api/open/ ?
+
+
+  role_hierarchy:
+    ROLE_CAPTAIN: ROLE_PLAYER

@@ -1,0 +1,484 @@
+App\Entity\User\User:
+  properties:
+    email:
+      - NotNull:
+          message: "email is missing."
+          groups: [ "userRegister" ]
+      - Email:
+          message: "Email {{ value }} is not a valid email"
+          groups: [ "userRegister", "userUpdate" ]
+    roles:
+      - NotNull:
+          message: "roles is missing."
+          groups: [ "userRegister" ]
+    password:
+      - Length:
+          min: 7
+          max: 100
+          groups: [ "userRegister" ]
+      - NotNull:
+          message: "password is missing."
+          groups: [ "userRegister" ]
+    isEnabled:
+      - NotNull:
+          message: "isEnabled is missing."
+          groups: [ "userRegister" ]
+      - Type:
+          type: bool
+          message: "This value should be of type {{ type }}"
+          groups: [ "userRegister" ]
+    createdAt:
+      - NotNull:
+          message: "created_at is missing."
+          groups: [ "userRegister" ]
+      - Type:
+          type: DateTimeInterface
+          message: "The value {{ value }} is not a valid DateTime"
+          groups: [ "userRegister" ]
+    lastLogin:
+      - Blank:
+          groups: [ "UserRegister" ]
+      - Type:
+          type: DateTimeInterface
+          message: "The value {{ value }} is not a valid DateTime"
+          groups: [ "userRegister" ]
+
+App\Entity\User\PlayerUser:
+  constraints:
+    - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+        fields: [ "gamerTag" ]
+        message: 'GamerTag already in use'
+        groups: [ "playerRegister" ]
+  properties:
+    gamerTag:
+      - NotNull:
+          message: "gamerTag is missing."
+          groups: [ "playerRegister" ]
+      - Length:
+          min: 3
+          max: 20
+          groups: [ "playerRegister", "playerUpdate" ]
+    points:
+      - NotNull:
+          message: "points is missing."
+          groups: [ "playerRegister" ]
+      - GreaterThanOrEqual: 0
+    isCaptain:
+      - NotNull:
+          message: "isCaptain is missing."
+          groups: [ "playerRegister" ]
+      - Type: bool
+    teams:
+      - All:
+          - Type:
+              type: App\Entity\Team\Team
+              message: 'The value {{ value }} is not a valid {{ type }}.'
+              groups: [ "teamJoin" ]
+    teamInvites:
+      - All:
+          - Type:
+              type: App\Entity\Team\TeamInvite
+              message: 'The value {{ value }} is not a valid {{ type }}.'
+
+App\Entity\User\StaffUser:
+  properties:
+    name:
+      - NotNull:
+          message: "name is missing."
+          groups: [ "staffRegister" ]
+      - Length:
+          min: 3
+          max: 20
+          groups: [ "staffRegister", "staffUpdate" ]
+
+App\Model\User\Dto\UserDto:
+  properties:
+    type:
+      - NotNull:
+          message: "type is missing."
+          groups: [ "userRegister" ]
+    email:
+      - NotNull:
+          message: "email is missing."
+          groups: [ "userRegister" ]
+    password:
+      - Length:
+          min: 7
+          max: 255
+          groups: [ "userRegister" ]
+          minMessage: "password must be at least {{ limit }} characters long."
+          maxMessage: "password cannot be longer than {{ limit }} characters."
+    gamerTag:
+      - NotNull:
+          message: "gamer_tag is missing."
+          groups: [ "playerRegister" ]
+      - Length:
+          min: 3
+          max: 255
+          minMessage: "gamerTag must be at least {{ limit }} characters long."
+          maxMessage: "gamerTag cannot be longer than {{ limit }} characters."
+          groups: [ "playerRegister" ]
+    name:
+      - NotNull:
+          message: "name is missing."
+          groups: [ "staffRegister" ]
+      - Type:
+          type: string
+          message: "The value {{ value }} is not a valid {{ type }}."
+          groups: [ "staffRegister" ]
+
+App\Entity\Team\Team:
+  constraints:
+    - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+        fields: [ "name" ]
+        message: 'Team name already exists'
+        groups: [ "teamCreate", "teamUpdate" ]
+  properties:
+    name:
+      - Length:
+          min: 3
+          max: 20
+          minMessage: "Name must be at least {{ limit }} characters long."
+          maxMessage: "Name cannot be longer than {{ limit }} characters."
+          groups: [ "teamCreate", "teamUpdate" ]
+    points:
+      - Type:
+          type: integer
+          message: "The value {{ value }} is not a valid {{ type }}."
+          groups: [ "teamCreate" ]
+    type:
+      - Type:
+          type: string
+          message: "The value {{ value }} is not a valid {{ type }}."
+          groups: [ "teamCreate" ]
+    players:
+      - All:
+          - Type:
+              type: App\Entity\User\PlayerUser
+              message: 'The value {{ value }} is not a valid {{ type }}.'
+              groups: [ "teamJoin", "teamCreate" ]
+    captain:
+      - Type:
+          type: App\Entity\User\PlayerUser
+          message: 'The value {{ value }} is not a valid {{ type }}.'
+          groups: [ "teamCreate" ]
+    createdAt:
+      - Type:
+          type: DateTimeInterface
+          message: "The value {{ value }} is not a valid DateTime"
+          groups: [ "teamCreate" ]
+    invites:
+      - All:
+          - Type:
+              type: App\Entity\Team\TeamInvite
+              message: 'The value {{ value }} is not a valid {{ type }}.'
+
+App\Entity\Team\TeamInvite:
+  properties:
+    team:
+      - Type:
+          type: App\Entity\Team\Team
+          message: 'The value {{ value }} is not a valid {{ type }}.'
+          groups: [ "teamInvite" ]
+    player:
+      - Type:
+          type: App\Entity\User\PlayerUser
+          message: 'The value {{ value }} is not a valid {{ type }}.'
+          groups: [ "teamInvite" ]
+
+App\Model\Team\Dto\TeamDto:
+  properties:
+    name:
+      - NotNull:
+          message: "name is missing."
+          groups: [ "teamCreate", "teamUpdate" ]
+    type:
+      - NotNull:
+          message: "type is missing."
+          groups: [ "teamCreate" ]
+    playerCaptain:
+      - NotNull:
+          message: "player_captain is missing."
+          groups: [ "teamCreate", "teamUpdate" ]
+
+App\Entity\Article\Article:
+  properties:
+    title:
+      - NotNull:
+          message: "title is missing."
+          groups: [ "articleCreate", "articleUpdate" ]
+      - Length:
+          min: 3
+          max: 20
+          minMessage: "title must be at least {{ limit }} characters long."
+          maxMessage: "title cannot be longer than {{ limit }} characters."
+          groups: [ "articleCreate", "articleUpdate" ]
+    content:
+      - NotNull:
+          message: "title is missing."
+          groups: [ "articleCreate", "articleUpdate" ]
+      - Length:
+          min: 10
+          max: 10000
+          minMessage: "title must be at least {{ limit }} characters long."
+          maxMessage: "title cannot be longer than {{ limit }} characters."
+          groups: [ "articleCreate", "articleUpdate" ]
+    createdAt:
+      - NotNull:
+          message: "createdAt is missing."
+          groups: [ "articleCreate" ]
+      - Type:
+          type: DateTimeInterface
+          message: "The value {{ value }} is not a valid DateTime"
+          groups: [ "articleCreate" ]
+
+App\Entity\Tournament\Tournament:
+  properties:
+    name:
+      - NotNull:
+          message: "name is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - Length:
+          min: 3
+          max: 20
+          minMessage: "Name must be at least {{ limit }} characters long."
+          maxMessage: "Name cannot be longer than {{ limit }} characters."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    points:
+      - NotNull:
+          message: "points is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - Type:
+          type: integer
+          message: "The value {{ value }} is not a valid {{ type }}."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    maxTeams:
+      - Type: integer
+      - NotNull:
+          message: "max_teams is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - LessThanOrEqual:
+          value: 64
+          message: "max_teams value {{ value }} should be lesser or equal than {{ compared_value }}"
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    hasLoserBracket:
+      - Type:
+          type: bool
+          message: "This value should be of type {{ type }}"
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - NotNull:
+          message: "has_looser_bracket is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    type:
+      - NotNull:
+          message: "type is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - Type:
+          type: string
+          message: "The value {{ value }} is not a valid {{ type }}."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    cashPrice:
+      - Type: string
+      - NotNull:
+          message: "crash_price is missing"
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    teams:
+      - All:
+          - Type:
+              type: App\Entity\Team\Team
+              message: 'The value {{ value }} is not a valid {{ type }}.'
+              groups: [ "tournamentCreate", "tournamentUpdate", "tournamentJoin", "tournamentLeave" ]
+    createdAt:
+      - NotNull:
+          message: "createdAt is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - Type:
+          type: DateTimeInterface
+          message: "The value {{ value }} is not a valid DateTime"
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    startAt:
+      - Type:
+          type: DateTimeInterface
+          message: "The value {{ value }} is not a valid DateTime"
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - NotNull:
+          message: "start_at is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - GreaterThan:
+          value: "yesterday"
+          message: "start_at should be greater than {{ compared_value }}"
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    isStarted:
+      - NotNull:
+          message: "isStarted is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - Type:
+          type: bool
+          message: "This value should be of type {{ type }}"
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    isFinished:
+      - NotNull:
+          message: "isFinished is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - Type:
+          type: bool
+          message: "This value should be of type {{ type }}"
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    tournamentBrackets:
+      - All:
+          - Type:
+              type: App\Entity\Tournament\TournamentBracket
+              message: 'The value {{ value }} is not a valid {{ type }}.'
+              groups: [ "tournamentGenerate" ]
+
+App\Model\Tournament\Dto\TournamentDto:
+  properties:
+    name:
+      - Type: string
+      - NotNull:
+          message: "name is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    points:
+      - Type: integer
+      - NotNull:
+          message: "points is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    maxTeams:
+      - Type: integer
+      - NotNull:
+          message: "max_teams is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - LessThanOrEqual:
+          value: 64
+          message: "max_teams value {{ value }} should be lesser or equal than {{ compared_value }}"
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    hasLoserBracket:
+      - Type:
+          type: bool
+          message: "has_looser_bracket should be of type {{ type }}"
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - NotNull:
+          message: "has_looser_bracket is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    type:
+      - Type: string
+      - NotNull:
+          message: "'type' is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    cashPrice:
+      - Type: string
+      - NotNull:
+          message: "'crash_price' is missing"
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    startAt:
+      - Type:
+          type: DateTimeInterface
+          message: "The value {{ value }} is not a valid DateTime"
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - NotNull:
+          message: "start_at is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - GreaterThan:
+          value: "yesterday"
+          message: "start_at should be greater than {{ compared_value }}"
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+    pointsByTier:
+      - Type:
+          type: array
+          message: 'The value {{ value }} is not a valid {{ type }}.'
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+      - NotNull:
+          message: "'points_by_tier' [] is missing."
+          groups: [ "tournamentCreate", "tournamentUpdate" ]
+
+App\Entity\Tournament\TournamentBracket:
+  properties:
+    name:
+      - Type: string
+      - NotNull:
+          message: "name is missing."
+          groups: [ "tournamentGenerate" ]
+    tournament:
+      - Type:
+          type: App\Entity\Tournament\Tournament
+          message: 'The value {{ value }} is not a valid {{ type }}.'
+          groups: [ "tournamentGenerate" ]
+    tournamentRounds:
+      - All:
+          - Type:
+              type: App\Entity\Tournament\TournamentRound
+              message: 'The value {{ value }} is not a valid {{ type }}.'
+              groups: [ "tournamentGenerate" ]
+
+App\Entity\Tournament\TournamentRound:
+  properties:
+    name:
+      - Type: string
+      - NotNull:
+          message: "name is missing."
+          groups: [ "tournamentGenerate" ]
+    bestOf:
+      - Type: int
+      - NotNull:
+          message: "bestOf is missing."
+          groups: [ "tournamentGenerate" ]
+    bracket:
+      - Type:
+          type: App\Entity\Tournament\Tournament
+          message: 'The value {{ value }} is not a valid {{ type }}.'
+          groups: [ "tournamentGenerate" ]
+      - NotNull:
+          message: "tournamentRound bracket is missing."
+          groups: [ "tournamentGenerate" ]
+    infos:
+      - Type:
+          type: array
+          message: 'The value {{ value }} is not a valid {{ type }}.'
+      - NotNull:
+          message: "TournamentRound infos is missing."
+          groups: [ "tournamentGenerate" ]
+
+App\Entity\Tournament\TournamentMatch:
+  properties:
+    name:
+      - Type:
+          type: string
+          groups: [ "tournamentGenerate" ]
+      - NotNull:
+          message: "name is missing."
+          groups: [ "tournamentGenerate" ]
+    teamOne:
+      - Type:
+          type: App\Entity\Team\Team
+          message: 'The value {{ value }} is not a valid {{ type }}.'
+          groups: [ "tournamentGenerate" ]
+    teamTwo:
+      - Type:
+          type: App\Entity\Team\Team
+          message: 'The value {{ value }} is not a valid {{ type }}.'
+          groups: [ "tournamentGenerate" ]
+    result:
+      - Type:
+          type: string
+
+App\Model\Round\Dto\RoundDto:
+  properties:
+    infos:
+      - Type:
+          type: array
+      - NotNull:
+          message: "infos is missing"
+          groups: [ "tournamentGenerate" ]
+    bestOf:
+      - Type:
+          type: int
+      - NotNull:
+          message: "best_of is missing"
+          groups: [ "tournamentGenerate" ]
+
+
+
+
+
+
+
